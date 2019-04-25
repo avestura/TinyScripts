@@ -1,3 +1,3 @@
 # Tiny Scripts
 
-My tiny PowerShell scripts
+My tiny PowerShell and AutoHotkey scripts
