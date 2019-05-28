@@ -17,37 +17,49 @@ function Install-DotNetTemplateById {
     Write-Host
 }
 
-function Install-FSharpDotnetTemplates {
-    Install-DotNetTemplateById("WebAPI.FSharp.Template::*")
-    Install-DotNetTemplateById("Eto.Forms.Templates::*")
-    Install-DotNetTemplateById("Expecto.Template::*")
-    Install-DotNetTemplateById("Fable.Template.Elmish.React::*")
-    Install-DotNetTemplateById("Fable.Template::*")
-    Install-DotNetTemplateById("Fable.Template.Library::*")
-    Install-DotNetTemplateById("Freya.Template::*")
-    Install-DotNetTemplateById("giraffe-template::*")
-    Install-DotNetTemplateById("GtkSharp.Template.FSharp")
-    Install-DotNetTemplateById("MiniScaffold::*")
-    Install-DotNetTemplateById("NancyFx.Core.Template::*")
-    Install-DotNetTemplateById("BlackFox.DotnetNew.FSharpTemplates::*")
-    Install-DotNetTemplateById("WebSharper.Templates::*")
-    Install-DotNetTemplateById("SAFE.Template::*")
-    Install-DotNetTemplateById("FSharp.TypeProviders.Templates")
+$fsharpTemplatesToInstall = 
+    "WebAPI.FSharp.Template::*",
+    "Eto.Forms.Templates::*",
+    "Expecto.Template::*",
+    "Fable.Template.Elmish.React::*",
+    "Fable.Template::*",
+    "Fable.Template.Library::*",
+    "Freya.Template::*",
+    "giraffe-template::*",
+    "GtkSharp.Template.FSharp",
+    "MiniScaffold::*",
+    "NancyFx.Core.Template::*",
+    "BlackFox.DotnetNew.FSharpTemplates::*",
+    "WebSharper.Templates::*",
+    "SAFE.Template::*",
+    "FSharp.TypeProviders.Templates"
+
+$csharpTemplatesToInstall = 
+    "Microsoft.AspNetCore.Blazor.Templates::*",
+    "GtkSharp.Template.CSharp",
+    "MonoGame.Template.CSharp",
+    "NUnit3.DotNetNew.Template::*",
+    "FiftyProtons.Templates.PSCore::*",
+    "RaspberryPi.Template::*",
+    "FiftyProtons.Templates.DotNetNew::*"
+
+$allDotnetTemplatesToInstall = $fsharpTemplatesToInstall + $csharpTemplatesToInstall
+
+function Install-DotNetTemplatesByList {
+    param ($idList, $activityName)
+    $i = 0;
+    $idList.ForEach({
+        Write-Progress -Activity $activityName -Status ("Installing ""$_""...") -PercentComplete (($i / $idList.Length) * 100)
+        Install-DotNetTemplateById($_)
+        $i = $i + 1;
+    })
+    Write-Progress -Activity $activityName -Status ("Finishing...") -PercentComplete 100 -Completed
+    Write-Host
+    Write-Host "Run ""dotnet new"" to use newly installed templates." -ForegroundColor Green
 }
 
-function Install-CSharpDotnetTemplates {
-    Install-DotNetTemplateById("Microsoft.AspNetCore.Blazor.Templates::*")
-    Install-DotNetTemplateById("GtkSharp.Template.CSharp")
-    Install-DotNetTemplateById("MonoGame.Template.CSharp")
-    Install-DotNetTemplateById("NUnit3.DotNetNew.Template::*")
-    Install-DotNetTemplateById("FiftyProtons.Templates.PSCore::*")
-    Install-DotNetTemplateById("RaspberryPi.Template::*")
-    Install-DotNetTemplateById("FiftyProtons.Templates.DotNetNew::*")
-}
-
-function Install-DotnetTemplates {
-    Install-FSharpDotnetTemplates
-    Install-CSharpDotnetTemplates    
-}
+function Install-FSharpDotnetTemplates {Install-DotNetTemplatesByList $fsharpTemplatesToInstall "F# Templates for .NET CLI" }
+function Install-CSharpDotnetTemplates {Install-DotNetTemplatesByList $csharpTemplatesToInstall "C# Templates for .NET CLI"}
+function Install-DotnetTemplates       {Install-DotNetTemplatesByList $allDotnetTemplatesToInstall "F# and C# Templates for .NET CLI" }
 
 new-alias codecomp Invoke-VSCodeCompare
