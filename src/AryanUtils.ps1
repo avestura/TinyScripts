@@ -32,11 +32,11 @@ function Install-FSharpDotnetTemplates {
     Install-DotNetTemplateById("BlackFox.DotnetNew.FSharpTemplates::*")
     Install-DotNetTemplateById("WebSharper.Templates::*")
     Install-DotNetTemplateById("SAFE.Template::*")
-    Install-DotNetTemplateById(FSharp.TypeProviders.Templates)
+    Install-DotNetTemplateById("FSharp.TypeProviders.Templates")
 }
 
 function Install-CSharpDotnetTemplates {
-    Install-DotNetTemplateById(Microsoft.AspNetCore.Blazor.Templates::*)
+    Install-DotNetTemplateById("Microsoft.AspNetCore.Blazor.Templates::*")
     Install-DotNetTemplateById("GtkSharp.Template.CSharp")
     Install-DotNetTemplateById("MonoGame.Template.CSharp")
     Install-DotNetTemplateById("NUnit3.DotNetNew.Template::*")
