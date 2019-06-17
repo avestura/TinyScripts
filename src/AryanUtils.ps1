@@ -63,3 +63,36 @@ function Install-CSharpDotnetTemplates {Install-DotNetTemplatesByList $csharpTem
 function Install-DotnetTemplates       {Install-DotNetTemplatesByList $allDotnetTemplatesToInstall "F# and C# Templates for .NET CLI" }
 
 new-alias codecomp Invoke-VSCodeCompare
+
+function  Test-Colors {
+    $sampleText = "Some Text"
+    Write-Host "$sampleText in Black"       -ForegroundColor Black
+    Write-Host "$sampleText in Blue"        -ForegroundColor Blue
+    Write-Host "$sampleText in Cyan"        -ForegroundColor Cyan
+    Write-Host "$sampleText in DarkBlue"    -ForegroundColor DarkBlue
+    Write-Host "$sampleText in DarkCyan"    -ForegroundColor DarkCyan
+    Write-Host "$sampleText in DarkGray"    -ForegroundColor DarkGray
+    Write-Host "$sampleText in DarkGreen"   -ForegroundColor DarkGreen
+    Write-Host "$sampleText in DarkMagenta" -ForegroundColor DarkMagenta
+    Write-Host "$sampleText in DarkRed"     -ForegroundColor DarkRed
+    Write-Host "$sampleText in DarkYellow"  -ForegroundColor DarkYellow
+    Write-Host "$sampleText in Gray"        -ForegroundColor Gray
+    Write-Host "$sampleText in Green"       -ForegroundColor Green
+    Write-Host "$sampleText in Magenta"     -ForegroundColor Magenta
+    Write-Host "$sampleText in Red"         -ForegroundColor Red
+    Write-Host "$sampleText in White"       -ForegroundColor White
+    Write-Host "$sampleText in Yellow"      -ForegroundColor Yellow
+
+}
+
+function Assert-Parent($parentName) { return (get-process -id $pid).parent.name -eq $parentName }
+
+function Assert-VSCode { return Assert-Parent("Code") }
+
+function Get-GitBranchName { git symbolic-ref --short HEAD }
+
+function Find-CoAlias($alias){
+    $refCmd = (get-alias $alias).ReferencedCommand.Name;
+    $refCmdWe = [System.IO.Path]::GetFileNameWithoutExtension($refCmd)
+    return Get-Alias -Definition $refCmdWe
+}
