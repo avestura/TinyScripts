@@ -32,7 +32,9 @@ $fsharpTemplatesToInstall =
     "BlackFox.DotnetNew.FSharpTemplates::*",
     "WebSharper.Templates::*",
     "SAFE.Template::*",
-    "FSharp.TypeProviders.Templates"
+    "FSharp.TypeProviders.Templates",
+    "JaggerJo.Avalonia.FuncUI.Templates"
+    
 
 $csharpTemplatesToInstall = 
     "Microsoft.AspNetCore.Blazor.Templates::*",
