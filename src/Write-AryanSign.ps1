@@ -1,11 +1,11 @@
-function Write-AryanSign {
+function Write-AvesturaSign {
     Write-Host
     Write-Host @'
 /~~~\/~~\/~~~\/~~~\/~~\/~~~\                    /~~~\/~~\/~~~\/~~~\/~~\/~~~\
 | /\/ /\/ /\ || /\/ /\/ /\ |                    | /\ \/\ \/\ || /\ \/\ \/\ |
 \ \/ /\/ /\/ /\ \/ /\/ /\/ /      
 '@ -NoNewline -ForegroundColor Green
-    Write-Host "0xaryan" -NoNewline -ForegroundColor Yellow
+    Write-Host "avestura" -NoNewline -ForegroundColor Yellow
     Write-Host @'
 \ \/\ \/\ \/ /\ \/\ \/\ \/ /
 \ \/\ \/\ \/  \ \/\ \/\ \/                      \/ /\/ /\/ /  \/ /\/ /\/ /
