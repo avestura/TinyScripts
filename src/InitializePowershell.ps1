@@ -1,4 +1,4 @@
-$host.UI.RawUI.WindowTitle = "0xaryan - Powershell Core 6 (x64)"
+$host.UI.RawUI.WindowTitle = "Avestura - Powershell Core 6 (x64)"
 $PSReadLineOptions = @{
     Colors = @{
         "String" = "#d69d85"
